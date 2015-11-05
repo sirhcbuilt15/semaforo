@@ -27,10 +27,13 @@
 #define YELLOW_Time 2000	// 2 segundos
 #define GREEN_Time 3000		// 3 segundos
 
+int encender(int led);
+int apagar(int led);
+
 int main(void)
 {
   /* Initialization, set PB5 (arduino digital pin 13) as output */
-  DDRB |= (1<<PB5);		//output
+  	DDRB |= (1<<PB5);		//output
 	DDRB |= (1<<PB4);		//output
 	DDRB |= (1<<PB3);		//output
 	DDRB |= (1<<PB2);		//output
@@ -41,13 +44,13 @@ int main(void)
 	
 	DDRB |= (0<<PB7);		//input
 
-  while (1) d
+  while (1) 
   {
 		encender(RED_Car);
 		encender(GREEN_Human);
 		_delay_ms(RED_Time);
 		apagar(RED_Car);
-		apagar(Green_Human);
+		apagar(GREEN_Human);
 		encender(GREEN_Car);
 		encender(RED_Human);
 		_delay_ms(GREEN_Time);
