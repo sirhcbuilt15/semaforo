@@ -18,17 +18,18 @@
 	Pin  7 as input	 -> Peaton esperando pasar, llamada. 
  */
 
-#define RED_Car PB4
-#define YELLOW_Car PB3
-#define GREEN_Car PB2
-#define RED_Human PB1
-#define GREEN_Human PB0
-#define RED_Time 3000 		// 3 segundos
-#define YELLOW_Time 2000	// 2 segundos
-#define GREEN_Time 3000		// 3 segundos
+#define RED_C PB4
+#define YELLOW_C PB3
+#define GREEN_C PB2
+#define RED_H PB1
+#define GREEN_H PB0
+#define RED_T 3000 		// 5 segundos
+#define YELLOW_T 2000		// 3 segundos
+#define GREEN_T 3000		// 5 segundos
+#define SHORT_T 400		// 0.2 segundos
 
-int encender(int led);
-int apagar(int led);
+int on(int led);
+int off(int led);
 
 int main(void)
 {
@@ -46,30 +47,82 @@ int main(void)
 
   while (1) 
   {
-		encender(RED_Car);
-		encender(GREEN_Human);
-		_delay_ms(RED_Time);
-		apagar(RED_Car);
-		apagar(GREEN_Human);
-		encender(GREEN_Car);
-		encender(RED_Human);
-		_delay_ms(GREEN_Time);
-		apagar(GREEN_Car);
-		encender(YELLOW_Car);
-		_delay_ms(YELLOW_Time);
-		apagar(YELLOW_Car);
-		apagar(RED_Human);
+		// SECUENCIA NORMAL		
+		/*on(RED_C);
+		on(GREEN_H);
+		_delay_ms(RED_T);
+		off(RED_C);
+		off(GREEN_H);
+		on(GREEN_C);
+		on(RED_H);
+		_delay_ms(GREEN_T);
+		off(GREEN_C);
+		on(YELLOW_C);
+		_delay_ms(YELLOW_T);
+		off(YELLOW_C);
+		off(RED_H);*/
+
+	on(RED_C);
+	_delay_ms(SHORT_T);
+	off(RED_H);
+	on(GREEN_H);
+	_delay_ms(GREEN_T);
+	off(GREEN_H);
+	_delay_ms(SHORT_T);
+	on(GREEN_H);
+	_delay_ms(SHORT_T);
+	off(GREEN_H);
+	_delay_ms(SHORT_T);
+	on(GREEN_H);
+	_delay_ms(SHORT_T);
+	off(GREEN_H);
+	_delay_ms(SHORT_T);
+	on(GREEN_H);
+	_delay_ms(SHORT_T);
+	off(GREEN_H);
+	_delay_ms(SHORT_T);
+	on(GREEN_H);
+	_delay_ms(SHORT_T);
+	
+
+	off(GREEN_H);
+	on(RED_H);
+	_delay_ms(SHORT_T);
+	off(RED_C);
+
+	on(GREEN_C);
+	_delay_ms(GREEN_T);
+	off(GREEN_C);
+	on(YELLOW_C);
+	_delay_ms(YELLOW_T);
+	off(YELLOW_C);
+	_delay_ms(SHORT_T);
+	on(YELLOW_C);
+	_delay_ms(SHORT_T);
+	off(YELLOW_C);
+	_delay_ms(SHORT_T);
+	on(YELLOW_C);
+	_delay_ms(SHORT_T);
+	off(YELLOW_C);
+	_delay_ms(SHORT_T);
+	on(YELLOW_C);
+	_delay_ms(SHORT_T);
+	off(YELLOW_C);
+	_delay_ms(SHORT_T);
+
+	off(YELLOW_C);
+
   }
   return 0;
 }
 
-int encender(int led)
+int on(int led)
 {
 	PORTB |= (1 << led);
 	return 0;
 }
 
-int apagar(int led)
+int off(int led)
 {
 	PORTB &= ~(1 << led);
 	return 0;
